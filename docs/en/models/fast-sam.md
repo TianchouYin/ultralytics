@@ -49,8 +49,8 @@ This table presents the available models with their specific pre-trained weights
 
 | Model Type | Pre-trained Weights                                                                         | Tasks Supported                              | Inference | Validation | Training | Export |
 | ---------- | ------------------------------------------------------------------------------------------- | -------------------------------------------- | --------- | ---------- | -------- | ------ |
-| FastSAM-s  | [FastSAM-s.pt](https://github.com/ultralytics/assets/releases/download/v8.2.0/FastSAM-s.pt) | [Instance Segmentation](../tasks/segment.md) | ✅        | ❌         | ❌       | ✅     |
-| FastSAM-x  | [FastSAM-x.pt](https://github.com/ultralytics/assets/releases/download/v8.2.0/FastSAM-x.pt) | [Instance Segmentation](../tasks/segment.md) | ✅        | ❌         | ❌       | ✅     |
+| FastSAM-s  | [FastSAM-s.pt](https://github.com/ultralytics/assets/releases/download/v8.3.0/FastSAM-s.pt) | [Instance Segmentation](../tasks/segment.md) | ✅        | ❌         | ❌       | ✅     |
+| FastSAM-x  | [FastSAM-x.pt](https://github.com/ultralytics/assets/releases/download/v8.3.0/FastSAM-x.pt) | [Instance Segmentation](../tasks/segment.md) | ✅        | ❌         | ❌       | ✅     |
 
 ## FastSAM Comparison vs YOLO
 
@@ -68,7 +68,7 @@ Here we compare Meta's SAM 2 models, including the smallest SAM2-t variant, with
 
 This comparison demonstrates the substantial differences in model sizes and speeds between SAM variants and YOLO segmentation models. While SAM provides unique automatic segmentation capabilities, YOLO models, particularly YOLOv8n-seg and YOLO11n-seg, are significantly smaller, faster, and more computationally efficient.
 
-Tests run on a 2025 Apple M4 Pro Macbook with 24GB of RAM using `torch==2.6.0` and `ultralytics==8.3.90`. To reproduce this test:
+Tests run on a 2025 Apple M4 Pro with 24GB of RAM using `torch==2.6.0` and `ultralytics==8.3.90`. To reproduce this test:
 
 !!! example
 
@@ -215,7 +215,7 @@ To perform object tracking on an image, use the `track` method as shown below:
     === "CLI"
 
         ```bash
-        yolo segment track model=FastSAM-s.pt source="path/to/video/file.mp4" imgsz=640
+        yolo segment track model=FastSAM-s.pt source="path/to/video.mp4" imgsz=640
         ```
 
 ## FastSAM official Usage
@@ -226,26 +226,26 @@ FastSAM is also available directly from the [https://github.com/CASIA-IVA-Lab/Fa
 
 1. Clone the FastSAM repository:
 
-    ```shell
+    ```bash
     git clone https://github.com/CASIA-IVA-Lab/FastSAM.git
     ```
 
 2. Create and activate a Conda environment with Python 3.9:
 
-    ```shell
+    ```bash
     conda create -n FastSAM python=3.9
     conda activate FastSAM
     ```
 
 3. Navigate to the cloned repository and install the required packages:
 
-    ```shell
+    ```bash
     cd FastSAM
     pip install -r requirements.txt
     ```
 
 4. Install the CLIP model:
-    ```shell
+    ```bash
     pip install git+https://github.com/ultralytics/CLIP.git
     ```
 
@@ -254,33 +254,32 @@ FastSAM is also available directly from the [https://github.com/CASIA-IVA-Lab/Fa
 1. Download a [model checkpoint](https://drive.google.com/file/d/1m1sjY4ihXBU1fZXdQ-Xdj-mDltW-2Rqv/view?usp=sharing).
 
 2. Use FastSAM for inference. Example commands:
-
     - Segment everything in an image:
 
-        ```shell
+        ```bash
         python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg
         ```
 
     - Segment specific objects using text prompt:
 
-        ```shell
+        ```bash
         python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --text_prompt "the yellow dog"
         ```
 
     - Segment objects within a [bounding box](https://www.ultralytics.com/glossary/bounding-box) (provide box coordinates in xywh format):
 
-        ```shell
+        ```bash
         python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --box_prompt "[570,200,230,400]"
         ```
 
     - Segment objects near specific points:
-        ```shell
+        ```bash
         python Inference.py --model_path ./weights/FastSAM.pt --img_path ./images/dogs.jpg --point_prompt "[[520,360],[620,300]]" --point_label "[1,0]"
         ```
 
-Additionally, you can try FastSAM through a [Colab demo](https://colab.research.google.com/drive/1oX14f6IneGGw612WgVlAiy91UHwFAvr9?usp=sharing) or on the [HuggingFace web demo](https://huggingface.co/spaces/An-619/FastSAM) for a visual experience.
+Additionally, you can try FastSAM through the CASIA-IVA-Lab [Colab demo](https://colab.research.google.com/drive/1oX14f6IneGGw612WgVlAiy91UHwFAvr9?usp=sharing).
 
-## Citations and Acknowledgements
+## Citations and Acknowledgments
 
 We would like to acknowledge the FastSAM authors for their significant contributions in the field of real-time instance segmentation:
 
