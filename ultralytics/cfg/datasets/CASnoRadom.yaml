@@ -1,0 +1,6 @@
+path: /data/users/lxing/File/medicalImg/CAS/selected_folders/dataset/yolo_split/noRadom
+train: images/train
+val: images/val
+test: images/test
+nc: 9
+names: ["lesion", "LCXg", "RCA", "stent", "LADt", "LADg", "LM", "LADz", "LCXz"]

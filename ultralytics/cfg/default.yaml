@@ -1,6 +1,6 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 # Default training settings and hyperparameters for medium-augmentation COCO training
-task: detect  # (str) YOLO task, i.e. detect, segment, classify, pose
+task: classify  # (str) YOLO task, i.e. detect, segment, classify, pose
 mode: val  # (str) YOLO mode, i.e. train, val, predict, export, track, benchmark
 
 # Train settings -------------------------------------------------------------------------------------------------------
@@ -9,22 +9,22 @@ data:  # (str, optional) path to data file, i.e. coco128.yaml
 #epochs: 1000  # (int) number of epochs to train for
 #epochs: 98  # (int) number of epochs to train for
 epochs: 200  # (int) number of epochs to train for
-#epochs: 50  # (int) number of epochs to train for
+# epochs: 50  # (int) number of epochs to train for
 patience: 50  # (int) epochs to wait for no observable improvement for early stopping of training
 #patience: 10  # (int) epochs to wait for no observable improvement for early stopping of training
 #batch: -1  # (int) number of images per batch (-1 for AutoBatch)
 #batch: 12  # (int) number of images per batch (-1 for AutoBatch)
 #batch: 6  # (int) number of images per batch (-1 for AutoBatch)
 #batch: 12  # (int) number of images per batch (-1 for AutoBatch)
-batch: 16  # (int) number of images per batch (-1 for AutoBatch)
-imgsz: 320  # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
+batch: 32  # (int) number of images per batch (-1 for AutoBatch)
+# imgsz: 320  # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
 #imgsz: 412  # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
-#imgsz: 512  # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
+imgsz: 512  # (int | list) input images size as int for train and val modes, or list[w,h] for predict and export modes
 save: True  # (bool) save train checkpoints and predict results
 save_period: -1 # (int) Save checkpoint every x epochs (disabled if < 1)
 cache: False  # (bool) True/ram, disk or False. Use cache for data loading
 device:  # (int | str | list, optional) device to run on, i.e. cuda device=0 or device=0,1,2,3 or device=cpu
-workers: 8  # (int) number of worker threads for data loading (per RANK if DDP)
+workers: 16  # (int) number of worker threads for data loading (per RANK if DDP)
 project:  # (str, optional) project name
 name:  # (str, optional) experiment name, results saved to 'project/name' directory
 exist_ok: False  # (bool) whether to overwrite existing experiment
@@ -57,17 +57,17 @@ split: test  # (str) dataset split to use for validation, i.e. 'val', 'test' or 
 save_json: True  # (bool) save results to JSON file
 save_hybrid: False  # (bool) save hybrid version of labels (labels + additional predictions)
 #训练时最后一轮p r f1使用的是最优f1的置信度，训练过程中应该用的此处
-#conf: 0.001 # (float, optional) object confidence threshold for detection (default 0.25 predict, 0.001 val)
-conf: 0.018  # Chinese Medical journal comparative experiment
+conf: 0.001 # (float, optional) object confidence threshold for detection (default 0.25 predict, 0.001 val)
+# conf: 0.018  # Chinese Medical journal comparative experiment
 #conf: 0.256 # (float, optional) object confidence threshold for detection (default 0.25 predict, 0.001 val)
-#iou: 0.7  # 0.7  # (float) intersection over union (IoU) threshold for NMS
-iou: 0.5  # 0.7  # yl9
-max_det: 68 # (int) maximum number of detections per image
+iou: 0.7  # 0.7  # (float) intersection over union (IoU) threshold for NMS
+# iou: 0.5  # 0.7  # yl9
+# max_det: 68 # (int) maximum number of detections per image
 #max_det: 34 # (int) maximum number of detections per image
-#max_det: 300 # (int) maximum number of detections per image
+max_det: 300 # (int) maximum number of detections per image
 half: False  # (bool) use half precision (FP16)
 dnn: False  # (bool) use OpenCV DNN for ONNX inference
-plots: True  # (bool) save plots during train/val
+plots: True  # (bool) save plots during train/val. False 不生成图片
 
 # Prediction settings --------------------------------------------------------------------------------------------------
 source:  # (str, optional) source directory for images or videos
@@ -119,13 +119,13 @@ hsv_h: 0.015  # (float) image HSV-Hue augmentation (fraction)
 hsv_s: 0.7  # (float) image HSV-Saturation augmentation (fraction)
 hsv_v: 0.4  # (float) image HSV-Value augmentation (fraction)
 #degrees: 0.0  # (float) image rotation (+/- deg)
-degrees: 0  # (float) image rotation (+/- deg)
-#degrees: 1  # (float) image rotation (+/- deg)
-#translate: 0.1  # 0.1  # (float) image translation (+/- fraction)
-translate: 0  # 0.1  # (float) image translation (+/- fraction)
+# degrees: 0  # (float) image rotation (+/- deg)
+degrees: 1  # (float) image rotation (+/- deg)
+translate: 0.1  # 0.1  # (float) image translation (+/- fraction)
+# translate: 0  # 0.1  # (float) image translation (+/- fraction)
 #scale: 0.5  # 0.5  # (float) image scale (+/- gain)
-scale: 0.0  # Write 0.0 to facilitate regular filtering
-#scale: 0.1  # Write 0.0 to facilitate regular filtering
+# scale: 0.0  # Write 0.0 to facilitate regular filtering
+scale: 0.1  # Write 0.0 to facilitate regular filtering
 shear: 0.0  # (float) image shear (+/- deg)
 perspective: 0.0  # (float) image perspective (+/- fraction), range 0-0.001
 flipud: 0.0 # 0.0  # (float) image flip up-down (probability)
