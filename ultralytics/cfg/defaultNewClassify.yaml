@@ -46,7 +46,7 @@ dropout: 0.0 # (float) use dropout regularization (classify train only)
 # Val/Test settings ----------------------------------------------------------------------------------------------------
 val: True # (bool) validate/test during training
 split: val # (str) dataset split to use for validation, i.e. 'val', 'test' or 'train'
-save_json: False # (bool) save results to JSON file
+save_json: True # (bool) save results to JSON file
 save_hybrid: False # (bool) save hybrid version of labels (labels + additional predictions)
 conf: # (float, optional) object confidence threshold for detection (default 0.25 predict, 0.001 val)
 iou: 0.7 # (float) intersection over union (IoU) threshold for NMS
@@ -67,7 +67,7 @@ retina_masks: False # (bool) use high-resolution segmentation masks
 embed: # (list[int], optional) return feature vectors/embeddings from given layers
 
 # Visualize settings ---------------------------------------------------------------------------------------------------
-show: False # (bool) show predicted images and videos if environment allows
+show: True # (bool) show predicted images and videos if environment allows
 save_frames: False # (bool) save predicted individual video frames
 save_txt: False # (bool) save results as .txt file
 save_conf: False # (bool) save results with confidence scores
@@ -106,22 +106,23 @@ hsv_h: 0.015 # (float) image HSV-Hue augmentation (fraction)
 hsv_s: 0.7 # (float) image HSV-Saturation augmentation (fraction)
 hsv_v: 0.4 # (float) image HSV-Value augmentation (fraction)
 # TODO:
-degrees: 10 # (float) image rotation (+/- deg)
+degrees: 0 # (float) image rotation (+/- deg)
 translate: 0.1 # (float) image translation (+/- fraction)
 scale: 0.1 # (float) image scale (+/- gain)
 #TODO：
-shear: 10 # (float) image shear (+/- deg)
-perspective: 0.000025 # (float) image perspective (+/- fraction), range 0-0.001
-flipud: 0.5 # (float) image flip up-down (probability)
+shear: 0 # (float) image shear (+/- deg)
+# perspective: 0.000025 # (float) image perspective (+/- fraction), range 0-0.001
+perspective: 0 # (float) image perspective (+/- fraction), range 0-0.001
+flipud: 0 # (float) image flip up-down (probability)
 fliplr: 0.5 # (float) image flip left-right (probability)
 bgr: 0.0 # (float) image channel BGR (probability)
 mosaic: 0 # (float) image mosaic (probability)
 mixup: 0.0 # (float) image mixup (probability)
 copy_paste: 0.0 # (float) segment copy-paste (probability)
 copy_paste_mode: "flip" # (str) the method to do copy_paste augmentation (flip, mixup)
-auto_augment:None  # (str) auto augmentation policy for classification ('randaugment', 'autoaugment', 'augmix',None)
+auto_augment:  # (str) auto augmentation policy for classification ('randaugment', 'autoaugment', 'augmix',)
 erasing: 0 # (float) probability of random erasing during classification training (0-0.9), 0 means no erasing, must be less than 1.0.
-crop_fraction: 0.95 # (float) image crop fraction for classification (0.1-1), 1.0 means no crop, must be greater than 0.
+crop_fraction: 1 # (float) image crop fraction for classification (0.1-1), 1.0 means no crop, must be greater than 0.
 
 # Custom config.yaml ---------------------------------------------------------------------------------------------------
 cfg: # (str, optional) for overriding defaults.yaml
