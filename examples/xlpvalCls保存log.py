@@ -8,16 +8,16 @@ from ultralytics.utils.files import increment_path
 from ultralytics.utils.logger import ConsoleLogger
 import yaml
 
-def xlpval():
+def xlpval(num):
     # 禁用 TQDM 的动态更新
     os.environ['TQDM_MININTERVAL'] = '1'
     
     ultralytics.checks()
 
     # 从YAML文件中加载字典
-    with open('runs/classify/train7/args.yaml', 'r') as file:
+    with open('runs/classify/train'+str(num)+'/args.yaml', 'r') as file:
         yaml_dict = yaml.safe_load(file)
-        yaml_dict['split'] = 'val'
+        yaml_dict['split'] = 'test'
     
     mymodel = f"{yaml_dict['save_dir']}/weights/best.pt"
     dataset = f"{yaml_dict['data']}"
@@ -58,7 +58,7 @@ def xlpval():
         )
         
         # 手动打印结果确保被捕获
-        # print(f"\nResults: {results}")
+        print(f"\nResults: {results}")
         # print(f"Top-1 Accuracy: {results.top1:.4f}")
         # print(f"Top-5 Accuracy: {results.top5:.4f}")
         
@@ -68,4 +68,6 @@ def xlpval():
     print(f"Log saved to: {output_path}")
 
 if __name__ == '__main__':
-    xlpval()
+    # for i in ['', '2', '3', '4', '5', '6', '7']:
+    for i in [2]:
+        xlpval(i)

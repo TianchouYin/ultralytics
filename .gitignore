@@ -198,3 +198,5 @@ calibration_*.npy
 *.heic
 *.ico
 *.raw
+
+plaque
