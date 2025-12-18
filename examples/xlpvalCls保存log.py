@@ -15,7 +15,9 @@ def xlpval(num):
     ultralytics.checks()
 
     # 从YAML文件中加载字典
-    with open('runs/classify/train'+str(num)+'/args.yaml', 'r') as file:
+    # with open('runs/classify/train'+str(num)+'/args.yaml', 'r') as file:
+    # with open('runs/classify/plaque/yolov8x-cls.yaml'+str(num)+'/args.yaml', 'r') as file:
+    with open('runs/classify/plaque/yolo11x-cls.yaml/train'+str(num)+'/args.yaml', 'r') as file:
         yaml_dict = yaml.safe_load(file)
         yaml_dict['split'] = 'test'
     
@@ -37,7 +39,7 @@ def xlpval(num):
     os.makedirs(actual_save_dir, exist_ok=True)
     
     # 使用 ConsoleLogger 自动处理输出清理和去重
-    output_path = os.path.join(actual_save_dir, 'output.txt')
+    output_path = os.path.join(actual_save_dir, f'a_{yaml_dict["split"]}Log.txt')
     logger = ConsoleLogger(output_path)
     
     logger.start_capture()
@@ -69,5 +71,6 @@ def xlpval(num):
 
 if __name__ == '__main__':
     # for i in ['', '2', '3', '4', '5', '6', '7']:
-    for i in [2]:
+    # for i in [2]:
+    for i in [9]:
         xlpval(i)

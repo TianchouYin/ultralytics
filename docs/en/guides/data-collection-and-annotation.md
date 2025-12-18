@@ -3,7 +3,6 @@ comments: true
 description: Data collection and annotation are vital steps in any computer vision project. Explore the tools, techniques, and best practices for collecting and annotating data.
 keywords: What is Data Annotation, Data Annotation Tools, Annotating Data, Avoiding Bias in Data Collection, Ethical Data Collection, Annotation Strategies
 ---
-
 # Data Collection and Annotation Strategies for Computer Vision
 
 ## Introduction
@@ -21,7 +20,7 @@ The key to success in any [computer vision project](./steps-of-a-cv-project.md) 
   <strong>Watch:</strong> How to Build Effective Data Collection and Annotation Strategies for Computer Vision 🚀
 </p>
 
-Every consideration regarding the data should closely align with [your project's goals](./defining-project-goals.md). Changes in your annotation strategies could shift the project's focus or effectiveness and vice versa. With this in mind, let's take a closer look at the best ways to approach data collection and annotation.
+Every consideration regarding the data should closely align with [your project&#39;s goals](./defining-project-goals.md). Changes in your annotation strategies could shift the project's focus or effectiveness and vice versa. With this in mind, let's take a closer look at the best ways to approach data collection and annotation.
 
 ## Setting Up Classes and Collecting Data
 
