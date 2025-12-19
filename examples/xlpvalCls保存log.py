@@ -17,7 +17,8 @@ def xlpval(num):
     # 从YAML文件中加载字典
     # with open('runs/classify/train'+str(num)+'/args.yaml', 'r') as file:
     # with open('runs/classify/plaque/yolov8x-cls.yaml'+str(num)+'/args.yaml', 'r') as file:
-    with open('runs/classify/plaque/yolo11x-cls.yaml/train'+str(num)+'/args.yaml', 'r') as file:
+    # with open('runs/classify/plaque/yolo11x-cls.yaml/train'+str(num)+'/args.yaml', 'r') as file:
+    with open('runs/classify/plaque240/yolo11n-cls.yaml/train'+str(num)+'/args.yaml', 'r') as file:
         yaml_dict = yaml.safe_load(file)
         yaml_dict['split'] = 'test'
     
@@ -72,5 +73,5 @@ def xlpval(num):
 if __name__ == '__main__':
     # for i in ['', '2', '3', '4', '5', '6', '7']:
     # for i in [2]:
-    for i in [9]:
+    for i in ['']:
         xlpval(i)

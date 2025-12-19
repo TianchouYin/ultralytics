@@ -1,33 +1,34 @@
 from pathlib import Path
 import sys
 repo_root = Path(__file__).resolve().parents[1]#本文件为起始目录
-sys.path.insert(0, str(repo_root))  # 确保本地源码优先
+# sys.path.insert(0, str(repo_root))  # 确保本地源码优先
 
 from ultralytics import YOLO
 
 # Load a model
-# model = YOLO("yolo11n-cls.yaml")  # build a new model from YAML
+model = YOLO("yolo11n-cls.yaml")  # build a new model from YAML
 # model = YOLO("yolo11m-cls.pt")  # load a pretrained model (recommended for training)
 # model = YOLO("resnet18",pretrained=True)  # load a pretrained model (recommended for training)
 
-model = YOLO("yolo11m-cls.yaml").load("yolo11m-cls.pt")  # build from YAML and transfer weights
+# model = YOLO("yolo11x-cls.yaml").load("yolo11x-cls.pt")  # build from YAML and transfer weights
 # model = YOLO("yolov8x-cls.yaml").load( "yolov8x-cls.pt")  # build from YAML and transfer weights
 modelname = model.model_name
 
 ch = 3
 # Train the model
 results = model.train(
+    project="runs/classify/plaque",
     name=f'{modelname}/train',
-    # cfg="ultralytics/cfg/defaultNewClassify.yaml",
+    data="/data/users/lxing/File/medicalImg/CAS/selected_folders/plaque/dataset",
+    cfg="ultralytics/cfg/defaultNewClassify.yaml",
     # cfg="runs/classify/plaque/yolo11x-cls.yaml/train6/args.yaml",
-    # cfg="cfg/default_copy.yaml",
-    cfg="cfg/defaultClassify240.yaml",
     imgsz=256,
+    device=-1,
     patience=100,
     # ch=ch, #报错 无该参数'ch' is not a valid YOLO argument. 
     # TODO DEBUG
     epochs=300,
-    # batch=16,
+    batch=16,
     save=True,  # 分类不适用
     # fraction=0.01,
 )
