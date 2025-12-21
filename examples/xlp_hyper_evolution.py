@@ -88,8 +88,9 @@ def run_hyperparameter_sweep(
             }
 
             # 训练模型
-            train_results = model.train(**train_args,
-                                        cfg="cfg/defaultClassify240.yaml")
+            train_results = model.train(
+                **train_args, cfg="cfg/defaultClassify240.yaml", batch=256
+            )
 
             # 提取关键指标
             metrics = {
@@ -101,7 +102,11 @@ def run_hyperparameter_sweep(
             }
 
             results.append(metrics)
-            print(f"  ✓ 完成 - Top1: {metrics['top1_accuracy']:.4f}" if metrics["top1_accuracy"] else "  ✓ 完成")
+            print(
+                f"  ✓ 完成 - Top1: {metrics['top1_accuracy']:.4f}"
+                if metrics["top1_accuracy"]
+                else "  ✓ 完成"
+            )
 
         except Exception as e:
             print(f"  ✗ 失败: {e}")
@@ -162,11 +167,12 @@ def run_custom_sweep():
     # 要测试的超参数组合
     hyperparameters = {
         # 学习率
-        "lr0": [0.01, 0.005, 0.001],
+        "lr0": [0],
         # Dropout
-        "dropout": [0.1, 0.3, 0.5],
+        "dropout": [0, 0.1, 0.3, 0.5],
         # 权重衰减
-        "weight_decay": [0.0005, 0.001, 0.005],
+        # "weight_decay": [0.0005, 0.001, 0.005],
+        "weight_decay": [0.01, 0.05, 0.1],
     }
 
     # 也可以测试其他超参数
@@ -189,8 +195,8 @@ def run_custom_sweep():
     return run_hyperparameter_sweep(
         base_config=base_config,
         hyperparameters=hyperparameters,
-        model_path="yolo11n-cls.pt",
-        output_dir="runs/classify/plaque_sweep",
+        model_path="yolo11m-cls.pt",
+        output_dir="runs/classify/plaque_sweep_m",
         epochs=100,
         imgsz=256,
     )
