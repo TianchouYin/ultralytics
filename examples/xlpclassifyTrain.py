@@ -26,7 +26,7 @@ results = model.train(
     patience=100,
     # ch=ch, #报错 无该参数'ch' is not a valid YOLO argument. 
     # TODO DEBUG
-    epochs=300,
+    epochs=1,
     # batch=16,
     save=True,  # 分类不适用
     # fraction=0.01,

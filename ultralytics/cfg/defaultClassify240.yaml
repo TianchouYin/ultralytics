@@ -87,7 +87,8 @@ lr0: 0.01 # (float) initial learning rate (SGD=1e-2, Adam/AdamW=1e-3)
 lrf: 0.01 # (float) final LR fraction; final LR = lr0 * lrf
 momentum: 0.937 # (float) SGD momentum or Adam beta1
 # TODO
-weight_decay: 0.0005 # (float) weight decay (L2 regularization)
+# weight_decay: 0.0005 # (float) weight decay (L2 regularization)
+weight_decay: 0.1 # (float) weight decay (L2 regularization)
 warmup_epochs: 3.0 # (float) warmup epochs (fractions allowed)
 warmup_momentum: 0.8 # (float) initial momentum during warmup
 warmup_bias_lr: 0.1 # (float) bias learning rate during warmup
@@ -98,6 +99,10 @@ dfl: 1.5 # (float) distribution focal loss gain
 pose: 12.0 # (float) pose loss gain (pose tasks)
 kobj: 1.0 # (float) keypoint objectness loss gain (pose tasks)
 nbs: 64 # (int) nominal batch size used for loss normalization
+      # 用于损失函数归一化的名义批次大小
+      # 这个值用于调整损失函数，使得在不同批次大小下训练结果具有可比性
+      # 实际批次大小由batch参数控制，但nbs作为参考值用于损失缩放
+      # 通常设置为64，可根据模型和数据集特性调整
 
 #https://docs.ultralytics.com/usage/cfg/#augmentation-settings
 #https://docs.ultralytics.com/reference/data/augment/
